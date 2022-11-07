@@ -5,26 +5,24 @@
 
 ## SolenoidUNIT
 
-<img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid_UNIT.jpg" width="320px">
+<img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid_UNIT.jpg" width="240px">
 
 オレンジ色のコネクタ(VH3.96-4p)に、負荷用の電源と負荷を接続します。M5Stackの[BAVGソケット](https://www.switch-science.com/products/7234)を使うと、電源は2.1mmプラグ、負荷はスプリング端子で接続できて便利です。
 
 負荷の電源はオレンジ色のVH3.96コネクタ、またはGrove端子のVDDから選択できます。Grove端子のVDDへの電源供給能力が不足する場合は[TypeC2Grove UNIT](https://www.switch-science.com/products/8453)等を使用してください。
 
-<img src="https://github.com/akita11/SolenoidUNIT/blob/main/SolenoidUNIT_case.jpg" width="320px">
+<img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid_UNIT_case.jpg" width="240px">
 
 基板形状が「[M5Stack用VH3.96-4ピンユニット[U020]](https://www.switch-science.com/products/4055)」と同一のため、そのケースを使うことができます。
 
 
 ### 使い方
 
-負荷の制御は、Grove端子の2本の信号（A/B/VDD/GNDの順）で以下の通り行います。
-
-AまたはBに"1"を与えると負荷がONとなり、"0"でOFFとなります。
+負荷の制御は、Grove端子の2本の信号（A/B/VDD/GNDの順）で行います。AまたはBに"1"を与えると負荷がONとなり、"0"でOFFとなります。
 
 必要に応じて以下のジャンパの設定を変更してください。
 
-<img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid_UNIT_back.jpg" width="320px">
+<img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid_UNIT_back.jpg" width="160px">
 
 - JP1 : 負荷（ドライバIC）の電源の選択。VDD（VH3.96コネクタ）がデフォルト、Groveの5Vも選択可能
 - JP2 : VH3.96コネクタの2番ピンの割り当て。「負荷Aのプラス側」（デフォルト）または「負荷Bのマイナス側」。

@@ -63,7 +63,8 @@
 
 <img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid5V_usage1.jpg" width="320px">
 
-ただしソレノイドは通電時の消費電流が大きいため、マイコン側の電源供給能力が不足する場合があります。その場合は、[TypeC2Grove UNIT](https://www.switch-science.com/products/8453)を使用して以下のように接続してください。
+ただしソレノイドは通電時の消費電流が大きいため、マイコン側の電源供給能力が不足する場合があります。その場合は、[TypeC2Grove UNIT](https://www.switch-science.com/products/8453)を使用して以下のように接続してください。負荷側の電源はUSB Type-C端子から供給することができます。別途USB-CコネクタのACアダプタ等を接続してください。
+
 
 <img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid5V_usage2.jpg" width="320px">
 
@@ -72,7 +73,7 @@
 
 ソレノイドのの制御は、Grove端子の2本の信号（A/B/VDD/GNDの順）で行います。AまたはBに"1"を与えると負荷がONとなり、"0"でOFFとなります。SolenoidUnitの標準接続（ソレノイド1個）ではA端子のみを使います。
 
-UIFlowでの[使用例](Solenoid5V_test.m5f)（以下）を参考にしてください。
+UIFlowでの[使用例](Solenoid5V_test.m5f)（以下）を参考にしてください。（Core2のPortAに接続した場合。A=GPIO32、B=GPIO33）
 
 <img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid5V_test.png" width="320px">
 

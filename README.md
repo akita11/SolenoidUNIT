@@ -18,24 +18,40 @@
 
 ### 使い方
 
-負荷の制御は、Grove端子の2本の信号（A/B/VDD/GNDの順）で行います。AまたはBに"1"を与えると負荷がONとなり、"0"でOFFとなります。
+ソレノイドとの接続は、電源供給方法に応じて以下の2通りがあります。制御方法は後述します。
 
-必要に応じて以下のジャンパの設定を変更してください。
+#### ACアダプタ等から供給する場合
+
+<img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid_usage1.jpg" width="160px">
+
+ソレノイドの定格電圧が12V等の5Vよりも高い電圧の場合は、ACアダプタ等をオレンジ色コネクタのVS-G間、ソレノイドをA+とA-Bの間に接続します。（M5Stackの[BAVGソケット](https://www.switch-science.com/products/7234)を使うと、電源は2.1mmプラグ、負荷はスプリング端子で接続できて便利です）
+
+#### Grove端子から供給する場合
 
 <img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid_UNIT_back.jpg" width="160px">
 
-- JP1 : 負荷（ドライバIC）の電源の選択。VDD（VH3.96コネクタ）がデフォルト、Groveの5Vも選択可能
+一般のソレノイドは5Vでは駆動できませんが、5Vで駆動する場合は、電源をGrove端子から供給することができます。
+裏面のJP1の、中央-VS(上側)の端子がつながっていますので、カッター等でカットし、中央と反対側の"Grove5V"側を、ハンダを盛るなどしてショートします。これによって、負荷への電源がGrove側の+5Vから供給されます。
+ただし、一般にソレノイドは消費電流が多く、マイコン側の+5V電源の供給能力が不足する場合がほとんどです。そのような場合は、[TypeC2Grove UNIT](https://www.switch-science.com/products/8453)を使用して、負荷側の電源をUSB Type-C端子から供給することができます。別途USB-CコネクタのACアダプタ等を接続してください。
+
+<img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid_usage2.jpg" width="160px">
+
+#### 2個のソレノイドを制御する場合
+
+必要に応じて、2個のソレノイドを制御することができます。ただし接続がやや複雑ですので、ご注意ください。
+
 - JP2 : VH3.96コネクタの2番ピンの割り当て。「負荷Aのプラス側」（デフォルト）または「負荷Bのマイナス側」。
   - 「負荷Aのプラス側」（デフォルト）の場合（下図(a)）：負荷Aを1番ピン（マイナス側）と2番ピン（プラス側）に接続。負荷は1個のみ(Groveの1番ピンで制御）
   - 「負荷Bのマイナス側の場合」（下図(b)）：負荷A, Bのプラス側はVDD（3番ピン）に接続し、負荷A, Bのマイナス側をそれぞれ1番ピンと2番ピンに接続。負荷は2個（Groveの1番ピン（負荷A）と2番ピン（負荷B）で制御）
 
 <img src="https://github.com/akita11/SolenoidUNIT/blob/main/connection.png" width="320px">
 
+
 ## Solenoid5V_UNIT
 
 <img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid5V_UNIT.jpg" width="320px">
 
-[タカハの5Vソレノイド](https://www.takaha.co.jp/co/ss/)を接続して制御できます。Grove端子のVDDへの電源供給能力が不足する場合は[TypeC2Grove UNIT](https://www.switch-science.com/products/8453)等を使用してください。
+[タカハの5Vソレノイド](https://www.takaha.co.jp/co/ss/)を接続して制御できます。
 
 <img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid5V_UNIT_case.jpg" width="320px">
 
@@ -43,6 +59,22 @@
 
 2段USBコネクタの上側がソレノイドA（Groveの1番ピンで制御）、下側がソレノイドB（Grovの2番ピンで制御）です。
 
+マイコン（M5Stack等）との接続は以下のように行います。
+
+<img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid5V_usage1.jpg" width="320px">
+
+ただしソレノイドは通電時の消費電流が大きいため、マイコン側の電源供給能力が不足する場合があります。その場合は、[TypeC2Grove UNIT](https://www.switch-science.com/products/8453)を使用して以下のように接続してください。
+
+<img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid5V_usage2.jpg" width="320px">
+
+
+## マイコン(M5Stack等)からの制御
+
+ソレノイドのの制御は、Grove端子の2本の信号（A/B/VDD/GNDの順）で行います。AまたはBに"1"を与えると負荷がONとなり、"0"でOFFとなります。SolenoidUnitの標準接続（ソレノイド1個）ではA端子のみを使います。
+
+UIFlowでの[使用例](Solenoid5V_test.m5f)（以下）を参考にしてください。
+
+<img src="https://github.com/akita11/SolenoidUNIT/blob/main/Solenoid5V_test.png" width="320px">
 
 
 ## Author
